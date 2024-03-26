@@ -31,7 +31,8 @@ To run the BMI Calculator app:
 
 ## Screenshots
 
-![BMI Calculator Screenshot](screenshots/bmi_calculator_screenshot.png)
+![Input Screen](screenshots/s1.png)
+![Output Screen](screenshots/s2.png)
 
 ## Dependencies
 
