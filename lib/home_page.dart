@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double? bmiValue = 25;
+  double? bmiValue;
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
 
@@ -26,13 +26,26 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
       body: SafeArea(
-          child: Center(
-        child: Container(
-          width: 360,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(8.0),
-          child: bmiValue == null ? buildInputUi() : buildOutputUi(),
-        ),
+          child: SizedBox(
+        width: double.infinity,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                "BMI CALCULATOR",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 42,
+                ),
+              ),
+              Container(
+                width: 360,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8.0),
+                child: bmiValue == null ? buildInputUi() : buildOutputUi(),
+              ),
+            ]),
       )),
     );
   }
@@ -78,7 +91,7 @@ class _HomePageState extends State<HomePage> {
           child: MaterialButton(
             height: 60,
             shape: const RoundedRectangleBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             minWidth: double.infinity,
             onPressed: calculateBMI,
@@ -96,15 +109,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildOutputUi() {
-    bmiValue = 25;
-    if (bmiValue! >= 30.0) {
-      bmiValue = 29.99;
-    } else if (bmiValue! < 18.5) {
-      bmiValue = 18.5;
+    double indicatorValue = bmiValue!;
+    if (indicatorValue >= 30.0) {
+      indicatorValue = 29.99;
+    } else if (indicatorValue <= 18.5) {
+      indicatorValue = 18.6;
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Container(
+          width: double.infinity,
+          height: 50,
+          alignment: Alignment.center,
+          decoration: boxDecoration,
+          child: Text(
+            "BMI : ${bmiValue!.toStringAsFixed(1)}",
+            style: TextStyle(color: Colors.white70, fontSize: 28),
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+        ),
         Container(
           height: 50,
           decoration: boxDecoration,
@@ -120,8 +146,10 @@ class _HomePageState extends State<HomePage> {
             child: LinearPercentIndicator(
               barRadius: Radius.circular(10),
               lineHeight: 12,
+              linearGradient:
+                  LinearGradient(colors: [Colors.purple, Colors.purple[300]!]),
               animation: true,
-              percent: ((bmiValue! - 18.5) * 8.70 / 100),
+              percent: ((indicatorValue - 18.5) * 8.70 / 100),
             ),
           ),
         ),
@@ -152,12 +180,30 @@ class _HomePageState extends State<HomePage> {
 
   void calculateBMI() {
     //bmi =  Formula: weight (kg) / [height (m)]^2
-    double h = double.tryParse(heightController.text)! / 100;
-    double w = double.tryParse(weightController.text)!;
+    try {
+      double h = double.tryParse(heightController.text)! / 100;
+      double w = double.tryParse(weightController.text)!;
 
-    setState(() {
-      bmiValue = w / (h * h);
-    });
+      setState(() {
+        bmiValue = w / (h * h);
+      });
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (_) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              backgroundColor: Colors.grey[900],
+              child: Container(
+                  padding: EdgeInsets.all(25),
+                  child: const Text(
+                    "Invalid values for height or weight",
+                    style: TextStyle(color: Colors.redAccent, fontSize: 18),
+                  )),
+            );
+          });
+    }
   }
 
   void checkAnother() {
