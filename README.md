@@ -1,16 +1,46 @@
-# bmi_calculator
+# BMI Calculator for Flutter Beginners
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+This BMI Calculator app is designed to help Flutter beginners understand the basics of building a simple health-related application. It calculates the Body Mass Index (BMI) based on the user's input for height and weight. The app then displays the BMI value along with a visual representation of the BMI using a linear progress indicator.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Input fields for height (in cm) and weight (in kg).
+- Button to calculate BMI based on the provided inputs.
+- Display of BMI value and a linear indicator representing the BMI.
+- Option to reset and check another BMI calculation.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run the BMI Calculator app:
+
+1. Ensure you have Flutter installed on your system.
+2. Clone the repository or download the source code.
+3. Navigate to the project directory in your terminal.
+4. Run `flutter pub get` to install dependencies.
+5. Connect your device or emulator.
+6. Run `flutter run` to launch the app.
+
+## Usage
+
+1. Enter your height in centimeters and weight in kilograms.
+2. Tap the "CALCULATE BMI" button to see your BMI value.
+3. View the linear progress indicator to understand your BMI percentage.
+4. Tap "CHECK ANOTHER" to reset and perform another calculation.
+
+## Screenshots
+
+![BMI Calculator Screenshot](screenshots/bmi_calculator_screenshot.png)
+
+## Dependencies
+
+- `percent_indicator: ^3.0.1` - Used to display the linear percentage indicator.
+
+## Contributors
+
+- **[Abhijith Konnayil]** - [GitHub Profile](https://github.com/abhijithkonnayil)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
