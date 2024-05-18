@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         Container(
           decoration: boxDecoration,
           child: MaterialButton(
-            height: 60,
+            height: 160,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
