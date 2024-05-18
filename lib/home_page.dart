@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       boxShadow: const [
         BoxShadow(color: Colors.black38, offset: Offset(5, 5), blurRadius: 10),
-        BoxShadow(color: Colors.white12, offset: Offset(-5, -5), blurRadius: 10)
+        BoxShadow(color: Colors.blue, offset: Offset(-5, -5), blurRadius: 10)
       ]);
 
   @override
